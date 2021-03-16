@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Flight Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to run
 
-## Available Scripts
+From the terminal, enter the folder where you want to keep the project and perform the following steps:
 
-In the project directory, you can run:
+```
+git clone https://github.com/guibfo/aircrafts.git
+cd aircrafts
+yarn
+```
 
-### `yarn start`
+After installing the dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+yarn start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Assumptions
 
-### `yarn test`
+The one aircraft I have available is based on `EGKK` so I take it that it should start only flights from there. I'm disabling every flight from being selected if it doesn't start on the current Airport the aircraft is on. That makes the user need to load quite a few pages (42 to be exact) before he can find a flight starting from `EGKK`. Using the limit param on the API query won't work for values over 25. So I assume in a more real world environment I would be able to query the API for flights departing from a specific Airport, since I can't do that here, changing the default value of the page variable on `getFlights` to 42 can get you started from EGKK and go from there. Other than that, user should request to load more flights until he finds a suiting one.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I assumed you can only select flights in a cronological order, for example, if you select a flight with an arrival time of 9 AM, and then the next one you select has a departure time of 6 PM you won't be able to fill in between after. Every flight is always added as the last flight when possible.
 
-### `yarn build`
+I'm assuming the 20 minutes turnaround time is not wasted time, it counts for the usage % of the aircraft
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Compromises
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Didn't work much on the layout and CSS because I wanted to focus on functionality as I was looking into taking as close to 3 hours as possible to finish it.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I would organize the project in a different way given more time, for example using Atomic design for the components, and also componentize more.
 
-### `yarn eject`
+The base logic of the project is all within one state controlling component (App.js) which I'm treating as if it is a page inside a bigger system. I decided to keep everything within this component for clarity sake, even if some functions could be moved outside as helpers or utils functions, since it's a one page project I opted to keep everything in the same place since the component isn't too big.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Since only one Aircraft is considered, I'm not doing any validation of the usage of the flights for the current selected Aircraft, in an ideal environment, after building the flights you should be able to save it and show the usage % of each Aircraft on the list
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+General alert when the user isn't able to add a flight to the schedule without mentioning the reason why (and alerts are bad) just to give some feedback
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+No unit testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Commit history: Sorry, I just did a big commit with everything as I finished so I could keep on the flow while writing code
