@@ -16,6 +16,8 @@ After installing the dependencies
 yarn start
 ```
 
+Project will run on `http://localhost:3000` and ask to use another port in case the port is already in use
+
 ## Assumptions
 
 - The one aircraft I have available is based on `EGKK` so I take it that it should start only flights from there. I'm disabling every flight from being selected if it doesn't start on the current Airport the aircraft is on. That makes the user need to load quite a few pages (42 to be exact) before he can find a flight starting from `EGKK`. Using the limit param on the API query won't work for values over 25. So I assume in a more real world environment I would be able to query the API for flights departing from a specific Airport, since I can't do that here, changing the default value of the page variable on `getFlights` to 42 can get you started from EGKK and go from there. Other than that, user should request to load more flights until he finds a suiting one.
