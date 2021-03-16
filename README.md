@@ -41,3 +41,5 @@ Project will run on `http://localhost:3000` and ask to use another port in case 
 - No unit testing
 
 - Commit history: Sorry, I just did a big commit with everything as I finished so I could keep on the flow while writing code
+
+- I didn't add a `reset state` button so you need a reload to retry the scheduling
